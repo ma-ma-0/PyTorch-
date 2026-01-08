@@ -5,12 +5,10 @@ from model import CNN
 
 def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    
-    # 1. テストデータの読み込み
+
     _, test_data = cifar_dataset()
     test_loader = DataLoader(test_data, batch_size=64, shuffle=False)
 
-    # 2. モデルの定義と読み込み
     model = CNN().to(device)
     model_path = 'cifar_cnn.pth'
     
@@ -22,12 +20,11 @@ def main():
         print(f"Error: {model_path} not found. Please run train.py first.")
         return
 
-    # 3. 推論と評価
-    model.eval() # 評価モードに設定
+    model.eval() 
     correct = 0
     total = 0
     
-    with torch.no_grad(): # 勾配計算を行わない
+    with torch.no_grad():
         for images, labels in test_loader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
