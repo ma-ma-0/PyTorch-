@@ -33,12 +33,12 @@ def main():
             correct += (predicted == labels).sum().item()
 
     accuracy = correct / total
-    print(f'Accuracy on test images: {accuracy:.4f}')
+    print(f'精度: {accuracy * 100:.2f}%') 
     
     if accuracy >= 0.55:
-        print("精度は55%以上です！")
+        print(f"精度は55%以上です！（結果: {accuracy * 100:.2f}%）")
     else:
-        print("精度は55%未満です。")
+        print(f"精度は55%未満です。（結果: {accuracy * 100:.2f}%）")
 
 if __name__ == "__main__":
     main()
